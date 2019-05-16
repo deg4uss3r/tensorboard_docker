@@ -1,0 +1,17 @@
+#!/bin/bash -e
+#WARNING: You may have to run this with sudo please read what this script does! 
+
+#Building the docker image from the current directory or the directory provided
+
+DOCKER_LOCATION=./
+
+if [ $# == 1 ]; then
+    DOCKER_LOCATION=${1}
+    docker build -t rthosfelt_tensorboard ${DOCKER_LOCATION}
+elif [ $# == 0 ]; then
+    docker build -t rthosfelt_tensorboard ${DOCKER_LOCATION}
+else
+    echo "Error: this program only accepts 0/1 argument to the Dockerfile directory, try escaping special characters"
+    exit 1 
+fi
+

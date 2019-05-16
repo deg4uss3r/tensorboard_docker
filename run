@@ -1,0 +1,18 @@
+#!/bin/bash -e
+
+#Please run the build script first to build the image
+#Runs a tensorboard container (off of the image in the dockerfile) on port 6006 (container named tensorboard)
+#WARNING: you may have to run this script with sudo, please read what it does!
+#Using logic below because we want to provide different errors based on common misuse
+if [ $# -lt 1 ]; then
+    echo "Error: provide a log directory to mount to the container"
+    exit 1
+elif [ $# -gt 1 ]; then
+    echo "Error: this program only accepts one argument, try escaping spaces or special characters"
+    exit 2
+else
+    #Running docker in detatch mode tunneling port <container>6006->localhost:6006
+    #mounting the arg[0] directory from localhost to container as /logs/
+    docker run --name tensorboard -p 6006:6006 -v ${1}:/logs/ -d rthosfelt_tensorboard
+fi
+

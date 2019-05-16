@@ -8,7 +8,7 @@ The build file should build a docker image of the container (and pull down the l
 
 The resulting image will be called `rthosfelt_tensorboard` and the run script relies on that, change both image names if you know what you're doing. 
 
-## run 
+## `run` 
 
 The run script takes in a directory to mount to the container as the `/logs/` directory and will be updated as logs are added (even under subfolders). Again, you might be required to run this with `sudo` be careful! 
 
